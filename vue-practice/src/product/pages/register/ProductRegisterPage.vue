@@ -46,10 +46,9 @@ export default {
             productPrice: 0,
             productDescription: '',
             productImage: null,
-            uploadedFileName: ''
+            uploadedFileName: '',
         }
     },
-
     methods: {
         ...mapActions(productModule, ['requestCreateProductToDjango']),
         async onSubmit () {
@@ -57,7 +56,7 @@ export default {
 
             try {
                 if (this.productImage) {
-                    const imageFormData = new FormData ()
+                    const imageFormData = new FormData()
                     imageFormData.append('productName', this.productName)
                     imageFormData.append('productPrice', this.productPrice.toString())
                     imageFormData.append('productDescription', this.productDescription)
@@ -67,16 +66,16 @@ export default {
                     this.uploadedFileName = response.data.imageName
                     this.$router.push({ name: 'ProductListPage' })
                 } else {
-                    console.log('이미지 파일을 선택하세요.')
+                    console.log('이미지 파일을 선택하세요!')
                 }
             } catch (error) {
                 console.log('파일 처리 과정에서 에러 발생:', error)
             }
+            // 상품 상세 정보 읽기
         },
-
         async onCancel () {
-            console.log('취소 버튼 눌렀음')
-            // '이전 routing 경로로 이동해줘'를 의미함
+            console.log('취소 버튼 눌럿음')
+            // '이전 routing 경로로 이동해줘' 를 의미함
             this.$router.go(-1)
         }
     }

@@ -1,24 +1,19 @@
-import actions, { BoardActions } from "./actions"
-import mutations, { BoardMutations } from "./mutations"
-import state, { BoardState } from "./states"
+import actions, { ProductActions } from "./actions"
+import mutations, { ProductMutations } from "./mutations"
+import state, { ProductState } from "./states"
 
-export interface BoardModule {
-    // namespaced 가 true 가 되면, 앞서 *.vue 코드에서 살펴봤듯이
-    // 아래와 같은 문법이 허용됨.
-    // const boardModule = 'boardModule'
-    // ...mapState(boardModule, ['boards']),
-    // 즉 boardModule 자체를 위와 같이 참조할 수 있다는 의미.
+export interface ProductModule {
     namespaced: true
-    state: BoardState
-    actions: BoardActions
-    mutations: BoardMutations
+    state: ProductState
+    actions: ProductActions
+    mutations: ProductMutations
 }
 
-const boardModule: BoardModule = {
+const productModule: ProductModule = {
     namespaced: true,
     state,
     actions,
     mutations,
 }
 
-export default boardModule
+export default productModule
