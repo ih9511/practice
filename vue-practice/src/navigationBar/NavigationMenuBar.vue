@@ -15,24 +15,65 @@
             <v-icon left>mdi-forum</v-icon>
             <span>게시판</span>
         </v-btn>
+        <v-btn v-if="isAuthenticated" text @click="goToCart" class="btn-text">
+            <v-icon left>mdi-cart</v-icon>
+            <span>장바구니</span>
+        </v-btn>
+        <v-btn v-if="isAuthenticated" text @click="goToOrder" class="btn-text">
+            <v-icon left>mdi-receipt</v-icon>
+            <span>주문</span>
+        </v-btn>
+        <v-btn v-if="!isAuthenticated" text @click="signIn" class="btn-text">
+            <v-icon left>mdi-login</v-icon>
+            <span>로그인</span>
+        </v-btn>
+        <v-btn v-if="isAuthenticated" text @click="signOut" class="btn-text">
+            <v-icon left>mdi-logout</v-icon>
+            <span>로그아웃</span>
+        </v-btn>
     </v-app-bar>
 </template>
 
 <script>
 import '@mdi/font/css/materialdesignicons.css'
 import router from '@/router'
+import { mapActions, mapState } from 'vuex'
+
+const authenticationModule = 'authenticationModule'
 
 export default {
+    data () {
+        return {
+            isLogin: !!localStorage.getItem('userToken')
+        }
+    },
     methods: {
+        ...mapActions(authenticationModule, ['requestLogoutToDjango']),
         goToHome () {
             router.push('/')
         },
-        goToBoardList (){
-            router.push('/board/list')
-        },
         goToProductList () {
             router.push('/product/list')
-        }
+        },
+        goToBoardList () {
+            router.push('/board/list')
+        },
+        signIn () {
+            router.push('/account/login')
+        },
+        signOut () {
+            this.requestLogoutToDjango()
+            router.push('/')
+        },
+        goToCart () {
+            router.push('/cart/list')
+        },
+        goToOrder () {
+            router.push('/order')
+        },
+        goToPostPage () {
+            router.push('/post/list')
+        },
     },
 
     mounted () {
