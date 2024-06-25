@@ -7,6 +7,10 @@
         </v-btn>
         <v-spacer></v-spacer>
 
+        <v-btn text @click="goToProductList" class="btn-text">
+            <v-icon left>mdi-store</v-icon>
+            <span>상품</span>
+        </v-btn>
         <v-btn text @click="goToBoardList" class="btn-text">
             <v-icon left>mdi-forum</v-icon>
             <span>게시판</span>
@@ -25,6 +29,9 @@ export default {
         },
         goToBoardList (){
             router.push('/board/list')
+        },
+        goToProductList () {
+            router.push('/product/list')
         }
     },
 

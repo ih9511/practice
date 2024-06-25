@@ -51,7 +51,7 @@ export default {
         // namespace  방식의 vuex, board 모듈의 action 기능을 땡겨올 때 사용
         // 그러므로 이것은 boardModule의 action에 정의되어야 함
         // 쉽게 얘기해서 requestCreateBoardToDjango가 boardModule의 action에 정의되어야 한다는 말
-        ...mapActions(boardModule, ['requestCreatBoardToDjango']),
+        ...mapActions(boardModule, ['requestCreateBoardToDjango']),
         async onSubmit () {
             console.log('작성 완료 버튼 눌렀지?')
 
